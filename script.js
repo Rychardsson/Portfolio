@@ -18,53 +18,57 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Tema Toggle
-  const themeToggle = document.getElementById('theme-toggle');
-  const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+  const themeToggle = document.getElementById("theme-toggle");
+  const mobileThemeToggle = document.getElementById("mobile-theme-toggle");
   const body = document.body;
-  
+
   // Verificar tema salvo ou usar padrão (dark)
-  const savedTheme = localStorage.getItem('theme') || 'dark';
+  const savedTheme = localStorage.getItem("theme") || "dark";
   applyTheme(savedTheme);
-  
+
   function applyTheme(theme) {
-    if (theme === 'light') {
-      body.classList.add('light-theme');
+    if (theme === "light") {
+      body.classList.add("light-theme");
       updateThemeIcons(true);
     } else {
-      body.classList.remove('light-theme');
+      body.classList.remove("light-theme");
       updateThemeIcons(false);
     }
-    localStorage.setItem('theme', theme);
+    localStorage.setItem("theme", theme);
   }
-  
+
   function updateThemeIcons(isLight) {
     const icons = [themeToggle, mobileThemeToggle];
-    icons.forEach(button => {
+    icons.forEach((button) => {
       if (button) {
-        const svg = button.querySelector('svg');
+        const svg = button.querySelector("svg");
         if (isLight) {
           // Ícone do sol
-          svg.innerHTML = '<path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"/>';
+          svg.innerHTML =
+            '<path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"/>';
         } else {
           // Ícone da lua
-          svg.innerHTML = '<path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>';
+          svg.innerHTML =
+            '<path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>';
         }
       }
     });
   }
-  
+
   function toggleTheme() {
-    const currentTheme = body.classList.contains('light-theme') ? 'light' : 'dark';
-    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    const currentTheme = body.classList.contains("light-theme")
+      ? "light"
+      : "dark";
+    const newTheme = currentTheme === "light" ? "dark" : "light";
     applyTheme(newTheme);
   }
-  
+
   // Event listeners para os botões de tema
   if (themeToggle) {
-    themeToggle.addEventListener('click', toggleTheme);
+    themeToggle.addEventListener("click", toggleTheme);
   }
   if (mobileThemeToggle) {
-    mobileThemeToggle.addEventListener('click', toggleTheme);
+    mobileThemeToggle.addEventListener("click", toggleTheme);
   }
 
   // Lógica para animações de scroll e para destacar o link de navegação ativo
