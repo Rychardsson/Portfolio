@@ -43,12 +43,18 @@
         </div>
     </header>
 
-    <div id="mobile-menu" class="hidden md:hidden fixed inset-0 bg-black z-40 pt-20">
+    <div id="mobile-menu" class="hidden md:hidden fixed inset-0 bg-black bg-opacity-95 backdrop-blur-lg z-40 pt-20">
         <div class="flex flex-col items-center justify-center h-full space-y-8 text-2xl">
-            <a href="#home" class="mobile-menu-link hover:text-cyan-400 transition-colors duration-300">Início</a>
-            <a href="#about" class="mobile-menu-link hover:text-cyan-400 transition-colors duration-300">Sobre</a>
-            <a href="#projects" class="mobile-menu-link hover:text-cyan-400 transition-colors duration-300">Projetos</a>
-            <a href="#contact" class="mobile-menu-link hover:text-cyan-400 transition-colors duration-300">Contato</a>
+            <a href="#home" class="mobile-menu-link hover:text-cyan-400 transition-all duration-300 relative overflow-hidden px-4 py-2">Início</a>
+            <a href="#about" class="mobile-menu-link hover:text-cyan-400 transition-all duration-300 relative overflow-hidden px-4 py-2">Sobre</a>
+            <a href="#experience" class="mobile-menu-link hover:text-cyan-400 transition-all duration-300 relative overflow-hidden px-4 py-2">Experiência</a>
+            <a href="#projects" class="mobile-menu-link hover:text-cyan-400 transition-all duration-300 relative overflow-hidden px-4 py-2">Projetos</a>
+            <a href="#contact" class="mobile-menu-link hover:text-cyan-400 transition-all duration-300 relative overflow-hidden px-4 py-2">Contato</a>
+            <button id="mobile-theme-toggle" class="mt-6 p-3 rounded-lg bg-gray-800 hover:bg-gray-700 transition-colors duration-300" aria-label="Alternar tema">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+                </svg>
+            </button>
         </div>
     </div>
 
@@ -178,6 +184,100 @@
                     </div>
                 </div>
 
+            </div>
+        </section>
+
+        <!-- Seção Experiência -->
+        <section id="experience" class="min-h-screen bg-gray-900 py-20 border-t border-gray-800">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center mb-16 fade-in">Experiência</h2>
+                
+                <div class="max-w-4xl mx-auto">
+                    <div class="relative">
+                        <!-- Linha da Timeline -->
+                        <div class="absolute left-4 md:left-1/2 md:transform md:-translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-cyan-400 via-blue-500 to-purple-600"></div>
+                        
+                        <!-- Item da Timeline -->
+                        <div class="timeline-item relative mb-12 md:mb-16 fade-in" data-delay="100">
+                            <div class="flex flex-col md:flex-row items-start">
+                                <!-- Marcador da Timeline -->
+                                <div class="absolute left-2 md:left-1/2 md:transform md:-translate-x-1/2 w-4 h-4 bg-cyan-400 rounded-full border-4 border-gray-900 z-10"></div>
+                                
+                                <!-- Conteúdo -->
+                                <div class="ml-12 md:ml-0 md:w-1/2 md:pr-8 md:text-right">
+                                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-700 hover:border-cyan-400 transition-all duration-300">
+                                        <h3 class="text-xl font-bold text-cyan-400 mb-2">Desenvolvedor Frontend</h3>
+                                        <h4 class="text-lg text-gray-300 mb-2">Freelancer</h4>
+                                        <p class="text-sm text-gray-400 mb-3">2023 - Presente</p>
+                                        <p class="text-gray-300 leading-relaxed">
+                                            Desenvolvimento de interfaces web modernas e responsivas utilizando HTML5, CSS3, JavaScript e frameworks como React. 
+                                            Foco em experiência do usuário e performance.
+                                        </p>
+                                        <div class="mt-4 flex flex-wrap gap-2">
+                                            <span class="px-3 py-1 bg-blue-600 text-xs rounded-full">HTML5</span>
+                                            <span class="px-3 py-1 bg-blue-600 text-xs rounded-full">CSS3</span>
+                                            <span class="px-3 py-1 bg-blue-600 text-xs rounded-full">JavaScript</span>
+                                            <span class="px-3 py-1 bg-blue-600 text-xs rounded-full">React</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item da Timeline 2 -->
+                        <div class="timeline-item relative mb-12 md:mb-16 fade-in" data-delay="200">
+                            <div class="flex flex-col md:flex-row items-start">
+                                <!-- Marcador da Timeline -->
+                                <div class="absolute left-2 md:left-1/2 md:transform md:-translate-x-1/2 w-4 h-4 bg-blue-500 rounded-full border-4 border-gray-900 z-10"></div>
+                                
+                                <!-- Conteúdo -->
+                                <div class="ml-12 md:ml-0 md:w-1/2 md:pl-8 md:ml-auto">
+                                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-700 hover:border-blue-500 transition-all duration-300">
+                                        <h3 class="text-xl font-bold text-blue-500 mb-2">Estudante de Tecnologia</h3>
+                                        <h4 class="text-lg text-gray-300 mb-2">Autodidata</h4>
+                                        <p class="text-sm text-gray-400 mb-3">2022 - Presente</p>
+                                        <p class="text-gray-300 leading-relaxed">
+                                            Aprendizado contínuo em tecnologias web modernas, algoritmos e estruturas de dados. 
+                                            Participação em projetos pessoais e desenvolvimento de soft skills.
+                                        </p>
+                                        <div class="mt-4 flex flex-wrap gap-2">
+                                            <span class="px-3 py-1 bg-purple-600 text-xs rounded-full">Python</span>
+                                            <span class="px-3 py-1 bg-purple-600 text-xs rounded-full">Node.js</span>
+                                            <span class="px-3 py-1 bg-purple-600 text-xs rounded-full">Git</span>
+                                            <span class="px-3 py-1 bg-purple-600 text-xs rounded-full">SQL</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item da Timeline 3 -->
+                        <div class="timeline-item relative mb-12 md:mb-16 fade-in" data-delay="300">
+                            <div class="flex flex-col md:flex-row items-start">
+                                <!-- Marcador da Timeline -->
+                                <div class="absolute left-2 md:left-1/2 md:transform md:-translate-x-1/2 w-4 h-4 bg-purple-600 rounded-full border-4 border-gray-900 z-10"></div>
+                                
+                                <!-- Conteúdo -->
+                                <div class="ml-12 md:ml-0 md:w-1/2 md:pr-8 md:text-right">
+                                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-700 hover:border-purple-600 transition-all duration-300">
+                                        <h3 class="text-xl font-bold text-purple-600 mb-2">Primeiros Passos</h3>
+                                        <h4 class="text-lg text-gray-300 mb-2">Descobrindo a Programação</h4>
+                                        <p class="text-sm text-gray-400 mb-3">2021 - 2022</p>
+                                        <p class="text-gray-300 leading-relaxed">
+                                            Início da jornada no mundo da programação com cursos online e primeiros projetos. 
+                                            Descoberta da paixão pelo desenvolvimento web e tecnologia.
+                                        </p>
+                                        <div class="mt-4 flex flex-wrap gap-2">
+                                            <span class="px-3 py-1 bg-green-600 text-xs rounded-full">HTML</span>
+                                            <span class="px-3 py-1 bg-green-600 text-xs rounded-full">CSS</span>
+                                            <span class="px-3 py-1 bg-green-600 text-xs rounded-full">Lógica</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
