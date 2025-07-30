@@ -207,7 +207,336 @@ body.light-theme .timeline-item .bg-gray-800:hover {
   background-color: var(--bg-tertiary);
 }
 
-/* Reset e configurações globais */
+/* Adicionar suporte para seções ativas na navegação */
+.nav-link-active {
+  color: #06b6d4 !important;
+  border-bottom: 2px solid #06b6d4;
+}
+
+/* Reset e configurações base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Variáveis CSS para o tema */
+:root {
+  /* Tema escuro (padrão) */
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+  --text-primary: #ffffff;
+  --text-secondary: #cbd5e1;
+  --text-accent: #06b6d4;
+  --border-color: #374151;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Tema claro */
+body.light-theme {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #e2e8f0;
+  --text-primary: #1e293b;
+  --text-secondary: #475569;
+  --text-accent: #0891b2;
+  --border-color: #e2e8f0;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Aplicação das variáveis */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Atualização de backgrounds para usar variáveis */
+body.light-theme .bg-gray-900 {
+  background-color: var(--bg-secondary) !important;
+}
+
+body.light-theme .bg-gray-800 {
+  background-color: var(--bg-tertiary) !important;
+}
+
+body.light-theme .text-white {
+  color: var(--text-primary) !important;
+}
+
+body.light-theme .text-gray-300 {
+  color: var(--text-secondary) !important;
+}
+
+body.light-theme .border-gray-700,
+body.light-theme .border-gray-800 {
+  border-color: var(--border-color) !important;
+}
+
+/* Menu mobile no tema claro */
+body.light-theme #mobile-menu {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(12px);
+}
+
+/* Header no tema claro */
+body.light-theme #main-header.bg-black {
+  background-color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Efeito glow personalizado */
+.glow-effect {
+  position: relative;
+  z-index: 1;
+}
+
+.glow-effect::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #06b6d4, #3b82f6, #8b5cf6, #06b6d4);
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: glow-rotate 3s linear infinite;
+}
+
+.glow-effect:hover::before {
+  opacity: 1;
+}
+
+@keyframes glow-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Animações de entrada */
+.scroll-animate,
+.fade-in,
+.timeline-item {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.scroll-animate.visible,
+.fade-in.visible,
+.timeline-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Animações específicas da timeline */
+.timeline-item {
+  transition-delay: 0.2s;
+}
+
+.timeline-item:nth-child(even) {
+  transition-delay: 0.4s;
+}
+
+.timeline-item:nth-child(3n) {
+  transition-delay: 0.6s;
+}
+
+/* Efeitos hover melhorados */
+.timeline-item .bg-gray-800:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+body.light-theme .timeline-item .bg-gray-800:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15),
+    0 10px 10px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* Melhorias no menu mobile */
+#mobile-menu a {
+  position: relative;
+  overflow: hidden;
+}
+
+#mobile-menu a::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(6, 182, 212, 0.2),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+#mobile-menu a:hover::before {
+  left: 100%;
+}
+
+/* Responsividade aprimorada */
+@media (max-width: 768px) {
+  .timeline-item .ml-12 {
+    margin-left: 3rem;
+  }
+
+  .timeline-item .absolute.left-2 {
+    left: 0.5rem;
+  }
+
+  .timeline-item .bg-gray-800 {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Smooth transitions para mudanças de tema */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* Botão de tema estilizado */
+#theme-toggle,
+#mobile-theme-toggle {
+  transition: all 0.3s ease;
+}
+
+#theme-toggle:hover,
+#mobile-theme-toggle:hover {
+  transform: scale(1.1);
+  background-color: var(--bg-tertiary);
+}
+
+/* Loading states e animações */
+.project-image-loading {
+  background: linear-gradient(90deg, #374151 25%, #4b5563 50%, #374151 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Spinner personalizado */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Feedback form styles */
+.form-feedback-enter {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.form-feedback-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+/* Melhoria no scroll suave */
+html {
+  scroll-behavior: auto; /* Desabilita o scroll nativo para usar o customizado */
+}
+
+/* Loading placeholder melhorado */
+.loading-placeholder {
+  background: linear-gradient(
+    90deg,
+    rgba(55, 65, 81, 0.8) 25%,
+    rgba(75, 85, 99, 0.8) 50%,
+    rgba(55, 65, 81, 0.8) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Estados de hover melhorados para tema claro */
+body.light-theme .timeline-item .bg-gray-800:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 35px -5px rgba(0, 0, 0, 0.2),
+    0 15px 15px -5px rgba(0, 0, 0, 0.15);
+}
+
+/* Transições suaves para imagens */
+.project-image,
+#profile-image {
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* Estados de loading para formulário */
+.form-loading {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+/* Feedback visual para campos de formulário */
+.form-field-focus {
+  border-color: var(--text-accent);
+  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1);
+}
+
+/* Animações de entrada melhoradas */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease-out;
+}
+
+.fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Performance otimizations */
+.scroll-animate,
+.fade-in,
+.timeline-item {
+  will-change: transform, opacity;
+}
+
+/* Preload de imagens críticas */
+.preload-image {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+} /* Reset e configurações globais */
 html {
   scroll-behavior: smooth;
 }
