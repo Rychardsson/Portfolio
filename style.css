@@ -1,0 +1,53 @@
+/* Importação das fontes do Google */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500&display=swap");
+
+/* Reset e configurações globais */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Poppins", sans-serif;
+}
+
+/* Efeitos personalizados */
+.glow-effect {
+  box-shadow: 0 0 15px rgba(0, 200, 255, 0.3), 0 0 30px rgba(0, 200, 255, 0.2);
+}
+
+/* Padding responsivo das seções */
+.section-padding {
+  padding: 6rem 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .section-padding {
+    padding: 8rem 2rem;
+  }
+}
+
+/* Navegação ativa */
+.nav-link-active {
+  color: #06b6d4;
+}
+
+/* Animações de scroll */
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.scroll-animate.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
