@@ -158,17 +158,23 @@ const AnimationManager = {
   setupObserver() {
     const observerOptions = {
       root: null,
-      rootMargin: "0px",
-      threshold: CONFIG.observerThreshold,
+      rootMargin: "-10% 0px -10% 0px", // Ajustar margem para melhor detecção
+      threshold: 0.3, // Reduzir threshold para detecção mais sensível
     };
 
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          this.animateSection(entry.target);
-          this.updateActiveNavLink(entry.target);
-        }
-      });
+      // Encontrar a seção mais visível
+      const visibleEntries = entries.filter((entry) => entry.isIntersecting);
+
+      if (visibleEntries.length > 0) {
+        // Pegar a seção com maior intersectionRatio
+        const mostVisible = visibleEntries.reduce((prev, current) =>
+          current.intersectionRatio > prev.intersectionRatio ? current : prev
+        );
+
+        this.animateSection(mostVisible.target);
+        this.updateActiveNavLink(mostVisible.target);
+      }
     }, observerOptions);
 
     DOM.sections.forEach((section) => observer.observe(section));
@@ -185,13 +191,38 @@ const AnimationManager = {
   },
 
   updateActiveNavLink(section) {
+    // Função para limpar todos os estados ativos
+    this.clearAllActiveStates();
+
+    // Encontrar e ativar o link correspondente à seção atual
     const activeLink = document.querySelector(
-      `nav a.nav-link[href="#${section.id}"]`
+      `nav a.nav-link[href="#${section.id}"], a.mobile-menu-link[href="#${section.id}"]`
     );
+
     if (activeLink) {
-      DOM.navLinks.forEach((link) => link.classList.remove("nav-link-active"));
       activeLink.classList.add("nav-link-active");
     }
+  },
+
+  clearAllActiveStates() {
+    // Remover de todos os links de navegação
+    document
+      .querySelectorAll(".nav-link, .mobile-menu-link")
+      .forEach((link) => {
+        link.classList.remove("nav-link-active");
+        link.blur(); // Remove o focus também
+      });
+
+    // Remover especificamente dos DOM elements
+    DOM.navLinks.forEach((link) => {
+      link.classList.remove("nav-link-active");
+      link.blur();
+    });
+
+    DOM.mobileMenuLinks.forEach((link) => {
+      link.classList.remove("nav-link-active");
+      link.blur();
+    });
   },
 
   animateHeroSection() {
@@ -214,6 +245,7 @@ const ScrollManager = {
     this.setupSmoothScroll();
     this.setupHeaderTransparency();
     this.createBackToTopButton();
+    this.createScrollProgressBar();
   },
 
   setupSmoothScroll() {
@@ -225,6 +257,9 @@ const ScrollManager = {
         const targetSection = document.querySelector(targetId);
 
         if (targetSection) {
+          // Usar a função de limpeza unificada
+          AnimationManager.clearAllActiveStates();
+
           if (MobileMenu.isOpen()) {
             MobileMenu.close();
           }
@@ -233,6 +268,11 @@ const ScrollManager = {
             behavior: "smooth",
             block: "start",
           });
+
+          // Adicionar estado ativo ao link clicado após um pequeno delay
+          setTimeout(() => {
+            anchor.classList.add("nav-link-active");
+          }, 100);
 
           Analytics.track(
             CONFIG.analytics.events.navigation,
@@ -246,20 +286,30 @@ const ScrollManager = {
 
   setupHeaderTransparency() {
     if (DOM.header) {
+      // Efeito de scroll sem parallax
       window.addEventListener("scroll", () => {
-        if (window.scrollY > CONFIG.scrollThreshold) {
+        const scrollY = window.scrollY;
+        const scrollThreshold = CONFIG.scrollThreshold;
+
+        if (scrollY > scrollThreshold) {
+          DOM.header.classList.add("scrolled");
           DOM.header.classList.add(
             "bg-black",
             "bg-opacity-80",
             "backdrop-blur-sm"
           );
         } else {
+          DOM.header.classList.remove("scrolled");
           DOM.header.classList.remove(
             "bg-black",
             "bg-opacity-80",
             "backdrop-blur-sm"
           );
         }
+
+        // Efeito de opacidade baseado no scroll
+        const opacity = Math.min(scrollY / 100, 1);
+        DOM.header.style.setProperty("--scroll-opacity", opacity);
       });
     }
   },
@@ -294,6 +344,59 @@ const ScrollManager = {
     });
 
     return button;
+  },
+
+  createScrollProgressBar() {
+    // Criar barra de progresso de scroll
+    const progressBar = document.createElement("div");
+    progressBar.id = "scroll-progress";
+    progressBar.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(90deg, #06b6d4, #3b82f6, #8b5cf6);
+      z-index: 9999;
+      transition: width 0.1s ease;
+      box-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+    `;
+
+    document.body.appendChild(progressBar);
+
+    // Atualizar progresso no scroll
+    window.addEventListener("scroll", () => {
+      const winScroll =
+        document.body.scrollTop || document.documentElement.scrollTop;
+      const height =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      progressBar.style.width = scrolled + "%";
+
+      // Adicionar efeito de pulsação quando próximo do fim
+      if (scrolled > 90) {
+        progressBar.style.animation = "pulse 1s infinite";
+      } else {
+        progressBar.style.animation = "none";
+      }
+    });
+
+    // Adicionar keyframes para o pulse
+    if (!document.querySelector("#pulse-keyframes")) {
+      const style = document.createElement("style");
+      style.id = "pulse-keyframes";
+      style.textContent = `
+        @keyframes pulse {
+          0% { box-shadow: 0 0 10px rgba(6, 182, 212, 0.5); }
+          50% { box-shadow: 0 0 20px rgba(6, 182, 212, 0.8); }
+          100% { box-shadow: 0 0 10px rgba(6, 182, 212, 0.5); }
+        }
+      `;
+      document.head.appendChild(style);
+    }
+
+    return progressBar;
   },
 };
 
