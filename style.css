@@ -586,3 +586,17 @@ h6 {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Smooth scroll para toda a página */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Melhorar focus para acessibilidade */
+button:focus,
+a:focus,
+input:focus,
+textarea:focus {
+  outline: 2px solid #06b6d4;
+  outline-offset: 2px;
+}

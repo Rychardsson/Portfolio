@@ -130,4 +130,89 @@ document.addEventListener("DOMContentLoaded", () => {
       header.classList.remove("bg-black", "bg-opacity-80", "backdrop-blur-sm");
     }
   });
+
+  // ===== FUNCIONALIDADES ESSENCIAIS =====
+
+  // 1. Smooth Scroll para navegação
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+
+      const targetId = this.getAttribute("href");
+      const targetSection = document.querySelector(targetId);
+
+      if (targetSection) {
+        // Fecha o menu mobile se estiver aberto
+        if (mobileMenu && !mobileMenu.classList.contains("hidden")) {
+          mobileMenu.classList.add("hidden");
+        }
+
+        // Smooth scroll
+        targetSection.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    });
+  });
+
+  // 2. Validação básica do formulário
+  const contactForm = document.getElementById("contact-form");
+  if (contactForm) {
+    contactForm.addEventListener("submit", function (e) {
+      const name = document.getElementById("name");
+      const email = document.getElementById("email");
+      const message = document.getElementById("message");
+
+      let isValid = true;
+
+      // Validação simples
+      if (!name.value.trim() || name.value.trim().length < 2) {
+        alert("Nome deve ter pelo menos 2 caracteres");
+        isValid = false;
+      }
+
+      if (!email.value.includes("@") || !email.value.includes(".")) {
+        alert("Por favor, insira um email válido");
+        isValid = false;
+      }
+
+      if (!message.value.trim() || message.value.trim().length < 10) {
+        alert("Mensagem deve ter pelo menos 10 caracteres");
+        isValid = false;
+      }
+
+      if (!isValid) {
+        e.preventDefault();
+      }
+    });
+  }
+
+  // 3. Botão voltar ao topo
+  const backToTopBtn = document.createElement("button");
+  backToTopBtn.innerHTML = "↑";
+  backToTopBtn.className =
+    "fixed bottom-6 right-6 w-12 h-12 bg-cyan-500 text-white rounded-full shadow-lg hover:bg-cyan-600 transition-all duration-300 opacity-0 invisible z-50";
+  backToTopBtn.style.fontSize = "20px";
+  backToTopBtn.setAttribute("aria-label", "Voltar ao topo");
+  document.body.appendChild(backToTopBtn);
+
+  // Mostrar/esconder botão baseado no scroll
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+      backToTopBtn.classList.remove("opacity-0", "invisible");
+    } else {
+      backToTopBtn.classList.add("opacity-0", "invisible");
+    }
+  });
+
+  // Scroll to top
+  backToTopBtn.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  });
+
+  console.log("✅ Portfolio carregado com funcionalidades essenciais!");
 });
