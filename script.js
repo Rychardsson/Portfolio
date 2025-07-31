@@ -215,4 +215,151 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   console.log("✅ Portfolio carregado com funcionalidades essenciais!");
+
+  // ===== GOOGLE ANALYTICS TRACKING =====
+
+  // Verifica se gtag está disponível
+  if (typeof gtag !== "undefined") {
+    // 1. Tracking de cliques em projetos (GitHub/Demo)
+    document
+      .querySelectorAll(
+        'a[href*="github"], a[href*="demo"], a[aria-label*="GitHub"], a[aria-label*="demonstração"]'
+      )
+      .forEach((link) => {
+        link.addEventListener("click", function () {
+          const linkText =
+            this.textContent.trim() ||
+            this.getAttribute("aria-label") ||
+            "Unknown";
+          gtag("event", "click", {
+            event_category: "portfolio_projects",
+            event_label: linkText,
+            value: 1,
+          });
+          console.log("📊 GA: Clique em projeto trackado -", linkText);
+        });
+      });
+
+    // 2. Tracking de envio de formulário
+    if (contactForm) {
+      const originalSubmit = contactForm.querySelector('button[type="submit"]');
+      originalSubmit.addEventListener("click", function () {
+        // Só tracka se passou na validação
+        const name = document.getElementById("name");
+        const email = document.getElementById("email");
+        const message = document.getElementById("message");
+
+        const isValidForm =
+          name.value.trim().length >= 2 &&
+          email.value.includes("@") &&
+          message.value.trim().length >= 10;
+
+        if (isValidForm) {
+          gtag("event", "form_submit", {
+            event_category: "contact",
+            event_label: "contact_form_submit",
+            value: 1,
+          });
+          console.log("📊 GA: Envio de formulário trackado");
+        }
+      });
+    }
+
+    // 3. Tracking de navegação entre seções
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener("click", function (e) {
+        const targetId = this.getAttribute("href").replace("#", "");
+        gtag("event", "navigation", {
+          event_category: "scroll_navigation",
+          event_label: targetId,
+          value: 1,
+        });
+        console.log("📊 GA: Navegação trackada -", targetId);
+      });
+    });
+
+    // 4. Tracking de cliques em redes sociais
+    document
+      .querySelectorAll('a[href*="linkedin"], a[href*="github.com"]')
+      .forEach((link) => {
+        link.addEventListener("click", function () {
+          const platform = this.href.includes("linkedin")
+            ? "LinkedIn"
+            : "GitHub";
+          gtag("event", "social_click", {
+            event_category: "social_media",
+            event_label: platform,
+            value: 1,
+          });
+          console.log("📊 GA: Clique em rede social trackado -", platform);
+        });
+      });
+
+    // 5. Tracking de botão voltar ao topo
+    backToTopBtn.addEventListener("click", () => {
+      gtag("event", "back_to_top", {
+        event_category: "navigation",
+        event_label: "back_to_top_button",
+        value: 1,
+      });
+      console.log("📊 GA: Botão voltar ao topo trackado");
+    });
+
+    // 6. Tracking de mudança de tema
+    const originalToggleTheme = toggleTheme;
+    window.toggleTheme = function () {
+      const currentTheme = body.classList.contains("light-theme")
+        ? "light"
+        : "dark";
+      const newTheme = currentTheme === "light" ? "dark" : "light";
+      originalToggleTheme();
+      gtag("event", "theme_change", {
+        event_category: "user_preference",
+        event_label: newTheme,
+        value: 1,
+      });
+      console.log("📊 GA: Mudança de tema trackada -", newTheme);
+    };
+
+    // Atualiza os event listeners dos botões de tema
+    if (themeToggle) {
+      themeToggle.removeEventListener("click", toggleTheme);
+      themeToggle.addEventListener("click", window.toggleTheme);
+    }
+    if (mobileThemeToggle) {
+      mobileThemeToggle.removeEventListener("click", toggleTheme);
+      mobileThemeToggle.addEventListener("click", window.toggleTheme);
+    }
+
+    // 7. Tracking de scroll depth (25%, 50%, 75%, 100%)
+    let scrollDepth = {
+      25: false,
+      50: false,
+      75: false,
+      100: false,
+    };
+
+    window.addEventListener("scroll", function () {
+      const scrollPercent = Math.round(
+        (window.scrollY / (document.body.scrollHeight - window.innerHeight)) *
+          100
+      );
+
+      Object.keys(scrollDepth).forEach((depth) => {
+        if (scrollPercent >= depth && !scrollDepth[depth]) {
+          scrollDepth[depth] = true;
+          gtag("event", "scroll_depth", {
+            event_category: "engagement",
+            event_label: `${depth}_percent`,
+            value: parseInt(depth),
+          });
+          console.log(`📊 GA: Scroll depth ${depth}% trackado`);
+        }
+      });
+    });
+
+    console.log("✅ Google Analytics configurado e pronto!");
+  } else {
+    console.log("⚠️ Google Analytics não está disponível");
+  }
 });
