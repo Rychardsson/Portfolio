@@ -10,7 +10,7 @@
 
 **Desenvolvedor Backend & Especialista em Dados**
 
-[🌐 Ver Portfólio](https://rychardsson.github.io/portfolioJS) • [📧 Contato](mailto:rychardssong2@gmail.com) • [💼 LinkedIn](https://www.linkedin.com/in/rychardssonsouza/)
+[🌐 Ver Portfólio](https://rychardsson.github.io/Portfolio) • [📧 Contato](mailto:rychardssong2@gmail.com) • [💼 LinkedIn](https://www.linkedin.com/in/rychardssonsouza/)
 
 </div>
 
@@ -74,10 +74,10 @@ portfolio/
 
 ```bash
 # Clone o repositório
-git clone https://github.com/Rychardsson/portfolioJS.git
+git clone https://github.com/Rychardsson/Portfolio.git
 
 # Entre na pasta
-cd portfolioJS
+cd Portfolio
 
 # Abra o index.html no navegador
 # Ou use um servidor local como Live Server (VS Code)
@@ -85,7 +85,7 @@ cd portfolioJS
 
 ### Método 2: GitHub Pages
 
-1. Acesse: [https://rychardsson.github.io/portfolioJS](https://rychardsson.github.io/portfolioJS)
+1. Acesse: [https://rychardsson.github.io/Portfolio](https://rychardsson.github.io/Portfolio)
 
 ---
 
