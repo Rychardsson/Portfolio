@@ -253,7 +253,7 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Rychardsson)
 [![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:rychardssong2@gmail.com)
 
-**🌐 [Ver Portfólio Ao Vivo](https://rychardsson.github.io/portfolioJS)**
+**🌐 [Ver Portfólio Ao Vivo](https://rychardsson.github.io/Portfolio)**
 
 </div>
 
