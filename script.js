@@ -24,7 +24,7 @@ const CONFIG = Object.freeze({
 
   // Google Analytics
   analytics: {
-    trackingId: "G-363387019",
+    trackingId: "G-777JWN0X3S",
     events: Object.freeze({
       themeChange: "theme_change",
       navigation: "navigation",
