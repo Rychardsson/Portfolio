@@ -6,6 +6,8 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
 }
 
 /* Variáveis CSS para o tema */
@@ -21,527 +23,22 @@
   --shadow-color: rgba(0, 0, 0, 0.3);
 }
 
-/* Tema claro */
+/* Tema claro - versão mais suave e otimizada */
 body.light-theme {
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8fafc;
+  --bg-primary: #f8fafc;
+  --bg-secondary: #f1f5f9;
   --bg-tertiary: #e2e8f0;
-  --text-primary: #1e293b;
-  --text-secondary: #475569;
+  --text-primary: #334155;
+  --text-secondary: #64748b;
   --text-accent: #0891b2;
-  --border-color: #e2e8f0;
-  --shadow-color: rgba(0, 0, 0, 0.1);
+  --border-color: #cbd5e1;
+  --shadow-color: rgba(0, 0, 0, 0.08);
 }
 
 /* Aplicação das variáveis */
 body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* Atualização de backgrounds para usar variáveis */
-body.light-theme .bg-gray-900 {
-  background-color: var(--bg-secondary) !important;
-}
-
-body.light-theme .bg-gray-800 {
-  background-color: var(--bg-tertiary) !important;
-}
-
-body.light-theme .text-white {
-  color: var(--text-primary) !important;
-}
-
-body.light-theme .text-gray-300 {
-  color: var(--text-secondary) !important;
-}
-
-body.light-theme .border-gray-700,
-body.light-theme .border-gray-800 {
-  border-color: var(--border-color) !important;
-}
-
-/* Menu mobile no tema claro */
-body.light-theme #mobile-menu {
-  background-color: rgba(255, 255, 255, 0.95) !important;
-  backdrop-filter: blur(12px);
-}
-
-/* Header no tema claro */
-body.light-theme #main-header.bg-black {
-  background-color: rgba(255, 255, 255, 0.8) !important;
-}
-
-/* Efeito glow personalizado */
-.glow-effect {
-  position: relative;
-  z-index: 1;
-}
-
-.glow-effect::before {
-  content: "";
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(45deg, #06b6d4, #3b82f6, #8b5cf6, #06b6d4);
-  border-radius: inherit;
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  animation: glow-rotate 3s linear infinite;
-}
-
-.glow-effect:hover::before {
-  opacity: 1;
-}
-
-@keyframes glow-rotate {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-/* Animações de entrada */
-.scroll-animate,
-.fade-in,
-.timeline-item {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.scroll-animate.visible,
-.fade-in.visible,
-.timeline-item.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Animações específicas da timeline */
-.timeline-item {
-  transition-delay: 0.2s;
-}
-
-.timeline-item:nth-child(even) {
-  transition-delay: 0.4s;
-}
-
-.timeline-item:nth-child(3n) {
-  transition-delay: 0.6s;
-}
-
-/* Efeitos hover melhorados */
-.timeline-item .bg-gray-800:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-    0 10px 10px -5px rgba(0, 0, 0, 0.04);
-}
-
-body.light-theme .timeline-item .bg-gray-800:hover {
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15),
-    0 10px 10px -5px rgba(0, 0, 0, 0.1);
-}
-
-/* Melhorias no menu mobile */
-#mobile-menu a {
-  position: relative;
-  overflow: hidden;
-}
-
-#mobile-menu a::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(6, 182, 212, 0.2),
-    transparent
-  );
-  transition: left 0.5s;
-}
-
-#mobile-menu a:hover::before {
-  left: 100%;
-}
-
-/* Responsividade aprimorada */
-@media (max-width: 768px) {
-  .timeline-item .ml-12 {
-    margin-left: 3rem;
-  }
-
-  .timeline-item .absolute.left-2 {
-    left: 0.5rem;
-  }
-
-  .timeline-item .bg-gray-800 {
-    margin-bottom: 1rem;
-  }
-}
-
-/* Smooth transitions para mudanças de tema */
-* {
-  transition: background-color 0.3s ease, color 0.3s ease,
-    border-color 0.3s ease;
-}
-
-/* Botão de tema estilizado */
-#theme-toggle,
-#mobile-theme-toggle {
-  transition: all 0.3s ease;
-}
-
-#theme-toggle:hover,
-#mobile-theme-toggle:hover {
-  transform: scale(1.1);
-  background-color: var(--bg-tertiary);
-}
-
-/* Adicionar suporte para seções ativas na navegação */
-.nav-link-active {
-  color: #06b6d4 !important;
-  border-bottom: 2px solid #06b6d4;
-}
-
-/* Reset e configurações base */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-/* Variáveis CSS para o tema */
-:root {
-  /* Tema escuro (padrão) */
-  --bg-primary: #0f172a;
-  --bg-secondary: #1e293b;
-  --bg-tertiary: #334155;
-  --text-primary: #ffffff;
-  --text-secondary: #cbd5e1;
-  --text-accent: #06b6d4;
-  --border-color: #374151;
-  --shadow-color: rgba(0, 0, 0, 0.3);
-}
-
-/* Tema claro */
-body.light-theme {
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8fafc;
-  --bg-tertiary: #e2e8f0;
-  --text-primary: #1e293b;
-  --text-secondary: #475569;
-  --text-accent: #0891b2;
-  --border-color: #e2e8f0;
-  --shadow-color: rgba(0, 0, 0, 0.1);
-}
-
-/* Aplicação das variáveis */
-body {
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* Atualização de backgrounds para usar variáveis */
-body.light-theme .bg-gray-900 {
-  background-color: var(--bg-secondary) !important;
-}
-
-body.light-theme .bg-gray-800 {
-  background-color: var(--bg-tertiary) !important;
-}
-
-body.light-theme .text-white {
-  color: var(--text-primary) !important;
-}
-
-body.light-theme .text-gray-300 {
-  color: var(--text-secondary) !important;
-}
-
-body.light-theme .border-gray-700,
-body.light-theme .border-gray-800 {
-  border-color: var(--border-color) !important;
-}
-
-/* Menu mobile no tema claro */
-body.light-theme #mobile-menu {
-  background-color: rgba(255, 255, 255, 0.95) !important;
-  backdrop-filter: blur(12px);
-}
-
-/* Header no tema claro */
-body.light-theme #main-header.bg-black {
-  background-color: rgba(255, 255, 255, 0.8) !important;
-}
-
-/* Efeito glow personalizado */
-.glow-effect {
-  position: relative;
-  z-index: 1;
-}
-
-.glow-effect::before {
-  content: "";
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(45deg, #06b6d4, #3b82f6, #8b5cf6, #06b6d4);
-  border-radius: inherit;
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  animation: glow-rotate 3s linear infinite;
-}
-
-.glow-effect:hover::before {
-  opacity: 1;
-}
-
-@keyframes glow-rotate {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-/* Animações de entrada */
-.scroll-animate,
-.fade-in,
-.timeline-item {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.scroll-animate.visible,
-.fade-in.visible,
-.timeline-item.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Animações específicas da timeline */
-.timeline-item {
-  transition-delay: 0.2s;
-}
-
-.timeline-item:nth-child(even) {
-  transition-delay: 0.4s;
-}
-
-.timeline-item:nth-child(3n) {
-  transition-delay: 0.6s;
-}
-
-/* Efeitos hover melhorados */
-.timeline-item .bg-gray-800:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-    0 10px 10px -5px rgba(0, 0, 0, 0.04);
-}
-
-body.light-theme .timeline-item .bg-gray-800:hover {
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15),
-    0 10px 10px -5px rgba(0, 0, 0, 0.1);
-}
-
-/* Melhorias no menu mobile */
-#mobile-menu a {
-  position: relative;
-  overflow: hidden;
-}
-
-#mobile-menu a::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(6, 182, 212, 0.2),
-    transparent
-  );
-  transition: left 0.5s;
-}
-
-#mobile-menu a:hover::before {
-  left: 100%;
-}
-
-/* Responsividade aprimorada */
-@media (max-width: 768px) {
-  .timeline-item .ml-12 {
-    margin-left: 3rem;
-  }
-
-  .timeline-item .absolute.left-2 {
-    left: 0.5rem;
-  }
-
-  .timeline-item .bg-gray-800 {
-    margin-bottom: 1rem;
-  }
-}
-
-/* Smooth transitions para mudanças de tema */
-* {
-  transition: background-color 0.3s ease, color 0.3s ease,
-    border-color 0.3s ease;
-}
-
-/* Botão de tema estilizado */
-#theme-toggle,
-#mobile-theme-toggle {
-  transition: all 0.3s ease;
-}
-
-#theme-toggle:hover,
-#mobile-theme-toggle:hover {
-  transform: scale(1.1);
-  background-color: var(--bg-tertiary);
-}
-
-/* Loading states e animações */
-.project-image-loading {
-  background: linear-gradient(90deg, #374151 25%, #4b5563 50%, #374151 75%);
-  background-size: 200% 100%;
-  animation: loading 1.5s infinite;
-}
-
-@keyframes loading {
-  0% {
-    background-position: 200% 0;
-  }
-  100% {
-    background-position: -200% 0;
-  }
-}
-
-/* Spinner personalizado */
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.animate-spin {
-  animation: spin 1s linear infinite;
-}
-
-/* Feedback form styles */
-.form-feedback-enter {
-  opacity: 0;
-  transform: translateY(-10px);
-}
-
-.form-feedback-enter-active {
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 300ms, transform 300ms;
-}
-
-/* Melhoria no scroll suave */
-html {
-  scroll-behavior: auto; /* Desabilita o scroll nativo para usar o customizado */
-}
-
-/* Loading placeholder melhorado */
-.loading-placeholder {
-  background: linear-gradient(
-    90deg,
-    rgba(55, 65, 81, 0.8) 25%,
-    rgba(75, 85, 99, 0.8) 50%,
-    rgba(55, 65, 81, 0.8) 75%
-  );
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: 200% 0;
-  }
-  100% {
-    background-position: -200% 0;
-  }
-}
-
-/* Estados de hover melhorados para tema claro */
-body.light-theme .timeline-item .bg-gray-800:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 25px 35px -5px rgba(0, 0, 0, 0.2),
-    0 15px 15px -5px rgba(0, 0, 0, 0.15);
-}
-
-/* Transições suaves para imagens */
-.project-image,
-#profile-image {
-  transition: opacity 0.5s ease-in-out;
-}
-
-/* Estados de loading para formulário */
-.form-loading {
-  pointer-events: none;
-  opacity: 0.7;
-}
-
-/* Feedback visual para campos de formulário */
-.form-field-focus {
-  border-color: var(--text-accent);
-  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1);
-}
-
-/* Animações de entrada melhoradas */
-.fade-in-up {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.6s ease-out;
-}
-
-.fade-in-up.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Performance otimizations */
-.scroll-animate,
-.fade-in,
-.timeline-item {
-  will-change: transform, opacity;
-}
-
-/* Preload de imagens críticas */
-.preload-image {
-  position: absolute;
-  top: -9999px;
-  left: -9999px;
-  width: 1px;
-  height: 1px;
-  opacity: 0;
-} /* Reset e configurações globais */
-html {
-  scroll-behavior: smooth;
-}
-
-body {
   font-family: "Inter", sans-serif;
 }
 
@@ -554,53 +51,12 @@ h6 {
   font-family: "Poppins", sans-serif;
 }
 
-/* Efeitos personalizados */
-.glow-effect {
-  box-shadow: 0 0 15px rgba(0, 200, 255, 0.3), 0 0 30px rgba(0, 200, 255, 0.2);
-}
-
-/* Padding responsivo das seções */
-.section-padding {
-  padding: 6rem 1.5rem;
-}
-
-@media (min-width: 1024px) {
-  .section-padding {
-    padding: 8rem 2rem;
-  }
-}
-
-/* Navegação ativa */
-.nav-link-active {
-  color: #06b6d4;
-}
-
-/* Animações de scroll */
-.scroll-animate {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.scroll-animate.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Smooth scroll para toda a página */
+/* Scroll suave */
 html {
   scroll-behavior: smooth;
 }
 
-/* Melhorar focus para acessibilidade - sem outline visível */
-button:focus,
-a:focus,
-input:focus,
-textarea:focus {
-  outline: none;
-}
-
-/* Remover outline padrão do browser em elementos interativos */
+/* Remover outline padrão do browser */
 button,
 a,
 [role="button"],
@@ -608,23 +64,389 @@ a,
   outline: none !important;
 }
 
+button:focus,
+a:focus,
+input:focus,
+textarea:focus {
+  outline: none;
+}
+
 /* Focus especial apenas para navegação por teclado */
 button:focus-visible,
 a:focus-visible {
-  outline: 2px solid #06b6d4;
+  outline: 2px solid var(--text-accent);
   outline-offset: 2px;
   border-radius: 4px;
 }
 
-/* Manter focus visual para inputs de formulário */
 input:focus,
 textarea:focus {
-  outline: 2px solid #06b6d4;
+  outline: 2px solid var(--text-accent);
   outline-offset: 2px;
   border-radius: 4px;
 }
 
-/* ===== MELHORIAS DO HEADER E NAVEGAÇÃO ===== */
+/* ===== MELHORIAS ESPECÍFICAS PARA O MODO CLARO ===== */
+
+/* Backgrounds e elementos base */
+body.light-theme .bg-gray-900 {
+  background-color: var(--bg-secondary) !important;
+}
+
+body.light-theme .bg-gray-800 {
+  background-color: var(--bg-tertiary) !important;
+}
+
+body.light-theme .bg-white\/5 {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  border-color: var(--border-color) !important;
+}
+
+body.light-theme .bg-white\/10 {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Textos */
+body.light-theme .text-white {
+  color: var(--text-primary) !important;
+}
+
+body.light-theme .text-gray-300,
+body.light-theme .text-gray-200 {
+  color: var(--text-secondary) !important;
+}
+
+body.light-theme .text-gray-400,
+body.light-theme .text-gray-500 {
+  color: var(--text-secondary) !important;
+}
+
+body.light-theme .text-gray-600 {
+  color: var(--text-primary) !important;
+}
+
+/* Cores de destaque */
+body.light-theme .text-cyan-400,
+body.light-theme .text-cyan-300 {
+  color: var(--text-accent) !important;
+}
+
+body.light-theme .text-blue-400,
+body.light-theme .text-blue-300 {
+  color: #1d4ed8 !important;
+}
+
+body.light-theme .text-purple-400,
+body.light-theme .text-purple-300 {
+  color: #7c3aed !important;
+}
+
+body.light-theme .text-green-300 {
+  color: #059669 !important;
+}
+
+body.light-theme .text-orange-300 {
+  color: #ea580c !important;
+}
+
+/* Bordas */
+body.light-theme .border-gray-700,
+body.light-theme .border-gray-800 {
+  border-color: var(--border-color) !important;
+}
+
+body.light-theme .border-white\/10,
+body.light-theme .border-white\/20 {
+  border-color: var(--border-color) !important;
+}
+
+/* Gradientes de fundo */
+body.light-theme .bg-gradient-to-br {
+  background: linear-gradient(
+    to bottom right,
+    rgba(8, 145, 178, 0.05),
+    rgba(37, 99, 235, 0.05)
+  ) !important;
+}
+
+body.light-theme .bg-gradient-to-b {
+  background: linear-gradient(
+    to bottom,
+    rgba(8, 145, 178, 0.8),
+    rgba(37, 99, 235, 0.6),
+    rgba(139, 92, 246, 0.8)
+  ) !important;
+}
+
+body.light-theme .bg-gradient-to-t {
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.02),
+    transparent
+  ) !important;
+}
+
+/* Elementos de fundo animados */
+body.light-theme .bg-cyan-500\/10 {
+  background-color: rgba(8, 145, 178, 0.05) !important;
+}
+
+body.light-theme .bg-blue-600\/10 {
+  background-color: rgba(37, 99, 235, 0.05) !important;
+}
+
+body.light-theme .bg-purple-500\/5 {
+  background-color: rgba(139, 92, 246, 0.03) !important;
+}
+
+/* Sombras */
+body.light-theme .shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+}
+
+body.light-theme .shadow-xl {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+}
+
+/* Efeitos de backdrop */
+body.light-theme .backdrop-blur-sm {
+  backdrop-filter: blur(8px);
+}
+
+body.light-theme .backdrop-blur-lg {
+  backdrop-filter: blur(16px);
+}
+
+/* Header no modo claro */
+body.light-theme #main-header {
+  background: linear-gradient(
+    135deg,
+    rgba(248, 250, 252, 0.95) 0%,
+    rgba(241, 245, 249, 0.9) 100%
+  ) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+}
+
+body.light-theme #main-header.scrolled {
+  background: linear-gradient(
+    135deg,
+    rgba(248, 250, 252, 0.98) 0%,
+    rgba(241, 245, 249, 0.95) 100%
+  ) !important;
+  border-bottom: 1px solid rgba(8, 145, 178, 0.3) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Menu mobile no modo claro */
+body.light-theme #mobile-menu {
+  background: linear-gradient(
+    135deg,
+    rgba(248, 250, 252, 0.98) 0%,
+    rgba(241, 245, 249, 0.95) 100%
+  ) !important;
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border-color) !important;
+}
+
+/* Botões no modo claro */
+body.light-theme #theme-toggle,
+body.light-theme #mobile-theme-toggle,
+body.light-theme #mobile-menu-button {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(241, 245, 249, 0.6) 100%
+  ) !important;
+  border: 1px solid var(--border-color) !important;
+  color: var(--text-primary) !important;
+}
+
+body.light-theme #theme-toggle:hover,
+body.light-theme #mobile-theme-toggle:hover,
+body.light-theme #mobile-menu-button:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(8, 145, 178, 0.1) 0%,
+    rgba(59, 130, 246, 0.1) 100%
+  ) !important;
+  border-color: rgba(8, 145, 178, 0.3) !important;
+}
+
+/* Links de navegação no modo claro */
+body.light-theme .nav-link {
+  color: var(--text-secondary) !important;
+}
+
+body.light-theme .nav-link:hover {
+  color: var(--text-accent) !important;
+  background: rgba(8, 145, 178, 0.1) !important;
+}
+
+body.light-theme .nav-link.nav-link-active,
+body.light-theme .mobile-menu-link.nav-link-active {
+  color: var(--text-accent) !important;
+  background: rgba(8, 145, 178, 0.15) !important;
+  border: 1px solid rgba(8, 145, 178, 0.3) !important;
+}
+
+/* Mobile menu links no modo claro */
+body.light-theme .mobile-menu-link {
+  color: var(--text-primary) !important;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.6) 0%,
+    rgba(241, 245, 249, 0.4) 100%
+  ) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+body.light-theme .mobile-menu-link:hover {
+  color: var(--text-accent) !important;
+  background: linear-gradient(
+    135deg,
+    rgba(8, 145, 178, 0.15) 0%,
+    rgba(59, 130, 246, 0.1) 100%
+  ) !important;
+  border-color: rgba(8, 145, 178, 0.3) !important;
+}
+
+/* Formulários no modo claro */
+body.light-theme input[type="text"],
+body.light-theme input[type="email"],
+body.light-theme textarea {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid var(--border-color) !important;
+  color: var(--text-primary) !important;
+}
+
+body.light-theme input[type="text"]:focus,
+body.light-theme input[type="email"]:focus,
+body.light-theme textarea:focus {
+  border-color: var(--text-accent) !important;
+  box-shadow: 0 0 0 3px rgba(8, 145, 178, 0.1) !important;
+}
+
+body.light-theme input::placeholder,
+body.light-theme textarea::placeholder {
+  color: var(--text-secondary) !important;
+}
+
+body.light-theme label {
+  color: var(--text-accent) !important;
+}
+
+/* Hover states para bordas */
+body.light-theme .hover\:border-cyan-500\/50:hover {
+  border-color: rgba(8, 145, 178, 0.5) !important;
+}
+
+body.light-theme .hover\:border-blue-500\/50:hover {
+  border-color: rgba(59, 130, 246, 0.5) !important;
+}
+
+body.light-theme .hover\:border-purple-500\/50:hover {
+  border-color: rgba(139, 92, 246, 0.5) !important;
+}
+
+/* Hover states para backgrounds */
+body.light-theme .hover\:bg-cyan-400\/10:hover {
+  background-color: rgba(8, 145, 178, 0.1) !important;
+}
+
+body.light-theme .hover\:bg-blue-400\/10:hover {
+  background-color: rgba(37, 99, 235, 0.1) !important;
+}
+
+body.light-theme .hover\:bg-purple-400\/10:hover {
+  background-color: rgba(139, 92, 246, 0.1) !important;
+}
+
+/* Efeito glow personalizado para modo claro */
+body.light-theme .glow-effect {
+  box-shadow: 0 0 15px rgba(8, 145, 178, 0.2), 0 0 30px rgba(8, 145, 178, 0.1) !important;
+}
+
+/* Timeline hover states melhorados para tema claro */
+body.light-theme .timeline-item .bg-gray-800:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 35px -5px rgba(0, 0, 0, 0.15),
+    0 15px 15px -5px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Otimização de legibilidade no modo claro */
+body.light-theme .leading-relaxed {
+  line-height: 1.7 !important;
+}
+
+/* ===== ESTILOS GERAIS (APLICADOS EM AMBOS OS TEMAS) ===== */
+
+/* Efeito glow personalizado */
+.glow-effect {
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 0 15px rgba(0, 200, 255, 0.3), 0 0 30px rgba(0, 200, 255, 0.2);
+}
+
+.glow-effect::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #06b6d4, #3b82f6, #8b5cf6, #06b6d4);
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: glow-rotate 3s linear infinite;
+}
+
+.glow-effect:hover::before {
+  opacity: 1;
+}
+
+@keyframes glow-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Animações de entrada */
+.scroll-animate,
+.fade-in,
+.timeline-item {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform, opacity;
+}
+
+.scroll-animate.visible,
+.fade-in.visible,
+.timeline-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Animações específicas da timeline */
+.timeline-item {
+  transition-delay: 0.2s;
+}
+
+.timeline-item:nth-child(even) {
+  transition-delay: 0.4s;
+}
+
+.timeline-item:nth-child(3n) {
+  transition-delay: 0.6s;
+}
 
 /* Header principal com efeitos avançados */
 #main-header {
@@ -633,7 +455,7 @@ textarea:focus {
   left: 0;
   right: 0;
   z-index: 50;
-  height: 4rem; /* 64px - mais compacto que antes */
+  height: 4rem;
   backdrop-filter: blur(20px);
   background: linear-gradient(
     135deg,
@@ -645,7 +467,6 @@ textarea:focus {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Header quando faz scroll */
 #main-header.scrolled {
   background: linear-gradient(
     135deg,
@@ -665,9 +486,8 @@ textarea:focus {
   background-size: 200% 200%;
   animation: gradientShift 3s ease-in-out infinite;
   font-weight: 700;
-  font-size: 1.25rem; /* Diminuído de 1.5rem para 1.25rem */
+  font-size: 1.25rem;
   letter-spacing: -0.02em;
-  position: relative;
 }
 
 @keyframes gradientShift {
@@ -686,15 +506,9 @@ textarea:focus {
   color: #cbd5e1;
   font-weight: 500;
   text-decoration: none;
-  padding: 0.375rem 0.75rem; /* Diminuído de 0.5rem 1rem */
+  padding: 0.375rem 0.75rem;
   border-radius: 0.5rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  outline: none !important;
-}
-
-.nav-link:focus,
-.nav-link:active {
-  outline: none !important;
 }
 
 .nav-link:hover {
@@ -704,56 +518,17 @@ textarea:focus {
   background: rgba(6, 182, 212, 0.1);
 }
 
-/* Link ativo - com maior especificidade */
 .nav-link.nav-link-active,
 .mobile-menu-link.nav-link-active {
   color: #06b6d4 !important;
   background: rgba(6, 182, 212, 0.1) !important;
   border: 1px solid rgba(6, 182, 212, 0.3) !important;
   box-shadow: 0 0 20px rgba(6, 182, 212, 0.2) !important;
-  transform: none !important; /* Previne conflitos com hover */
 }
 
-/* Garantir que hover não interfira com estado ativo */
-.nav-link.nav-link-active:hover {
-  transform: translateY(-2px) !important;
-}
-
-/* Botão de tema melhorado */
+/* Botões melhorados */
 #theme-toggle,
-#mobile-theme-toggle {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.1) 0%,
-    rgba(255, 255, 255, 0.05) 100%
-  );
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  outline: none !important;
-}
-
-#theme-toggle:focus,
-#theme-toggle:active,
-#mobile-theme-toggle:focus,
-#mobile-theme-toggle:active {
-  outline: none !important;
-}
-
-#theme-toggle:hover,
-#mobile-theme-toggle:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(6, 182, 212, 0.2) 0%,
-    rgba(59, 130, 246, 0.2) 100%
-  );
-  border-color: rgba(6, 182, 212, 0.5);
-  transform: scale(1.05);
-  box-shadow: 0 4px 20px rgba(6, 182, 212, 0.3);
-}
-
-/* Botão de menu mobile melhorado */
+#mobile-theme-toggle,
 #mobile-menu-button {
   background: linear-gradient(
     135deg,
@@ -762,17 +537,11 @@ textarea:focus {
   );
   border: 1px solid rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);
-  border-radius: 0.5rem;
-  padding: 0.5rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  outline: none !important;
 }
 
-#mobile-menu-button:focus,
-#mobile-menu-button:active {
-  outline: none !important;
-}
-
+#theme-toggle:hover,
+#mobile-theme-toggle:hover,
 #mobile-menu-button:hover {
   background: linear-gradient(
     135deg,
@@ -781,6 +550,7 @@ textarea:focus {
   );
   border-color: rgba(6, 182, 212, 0.5);
   transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(6, 182, 212, 0.3);
 }
 
 /* Menu mobile melhorado */
@@ -808,7 +578,6 @@ textarea:focus {
     rgba(255, 255, 255, 0.02) 100%
   );
   border: 1px solid rgba(255, 255, 255, 0.1);
-  overflow: hidden;
 }
 
 .mobile-menu-link:hover {
@@ -839,13 +608,80 @@ textarea:focus {
   }
 }
 
-/* Responsividade melhorada */
+/* Efeitos hover melhorados */
+.timeline-item .bg-gray-800:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Responsividade aprimorada */
 @media (max-width: 768px) {
+  .timeline-item .ml-12 {
+    margin-left: 3rem;
+  }
+
+  .timeline-item .absolute.left-2 {
+    left: 0.5rem;
+  }
+
+  .timeline-item .bg-gray-800 {
+    margin-bottom: 1rem;
+  }
+
   .logo-text {
     font-size: 1.25rem;
   }
 
   #main-header {
     padding: 0.5rem 1rem;
+  }
+}
+
+/* Animações e efeitos adicionais */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease-out;
+}
+
+.fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Loading states e animações */
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Padding responsivo das seções */
+.section-padding {
+  padding: 6rem 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .section-padding {
+    padding: 8rem 2rem;
   }
 }
