@@ -97,37 +97,15 @@ body.light-theme .bg-gray-800 {
   background-color: var(--bg-tertiary) !important;
 }
 
-/* CARDS - Configuração específica para modo claro */
-body.light-theme .bg-white\/5,
-body.light-theme .rounded-3xl.bg-white\/5,
-body.light-theme div[class*="bg-white/5"] {
-  background: linear-gradient(
-    135deg,
-    rgba(248, 250, 252, 0.8) 0%,
-    rgba(241, 245, 249, 0.6) 100%
-  ) !important;
-  border: 1px solid rgba(203, 213, 225, 0.5) !important;
-  backdrop-filter: blur(10px) !important;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+/* Cards no modo claro - versão simplificada */
+body.light-theme .bg-white\/5 {
+  background-color: rgba(248, 250, 252, 0.7) !important;
+  border-color: var(--border-color) !important;
 }
 
-body.light-theme .bg-white\/10,
-body.light-theme .rounded-3xl.bg-white\/10,
-body.light-theme div[class*="bg-white/10"] {
-  background: linear-gradient(
-    135deg,
-    rgba(241, 245, 249, 0.9) 0%,
-    rgba(226, 232, 240, 0.7) 100%
-  ) !important;
-  border: 1px solid rgba(203, 213, 225, 0.6) !important;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+body.light-theme .bg-white\/10 {
+  background-color: rgba(241, 245, 249, 0.8) !important;
 }
-
-/* Cards hover no modo claro */
-body.light-theme .bg-white\/5:hover,
-body.light-theme .rounded-3xl.bg-white\/5:hover,
 body.light-theme div[class*="bg-white/5"]:hover {
   background: linear-gradient(
     135deg,
