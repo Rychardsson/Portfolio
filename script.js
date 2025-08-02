@@ -245,8 +245,28 @@ const ThemeModule = {
     const savedTheme = localStorage.getItem("theme") || "dark";
     this.applyTheme(savedTheme);
     this.bindEvents();
+    this.setupThemeObserver();
     this.isInitialized = true;
     Utils.log.success(`Tema inicializado: ${savedTheme}`);
+  },
+
+  setupThemeObserver() {
+    // Observer para mudanças de tema
+    const body = document.body;
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (
+          mutation.type === "attributes" &&
+          mutation.attributeName === "class"
+        ) {
+          if (body.classList.contains("light-theme")) {
+            setTimeout(() => this.fixLightModeCards(), 100);
+          }
+        }
+      });
+    });
+
+    observer.observe(body, { attributes: true });
   },
 
   bindEvents() {
@@ -268,6 +288,29 @@ const ThemeModule = {
     this.updateIcons(isLight);
     localStorage.setItem("theme", theme);
     this.currentTheme = theme;
+
+    // Correção específica para cards no modo claro
+    if (isLight) {
+      this.fixLightModeCards();
+    }
+  },
+
+  fixLightModeCards() {
+    // Seleciona todos os cards com bg-white/5
+    const cards = document.querySelectorAll(
+      '.bg-white\\/5, [class*="bg-white/5"]'
+    );
+
+    cards.forEach((card) => {
+      if (card.classList.contains("rounded-3xl")) {
+        card.style.background =
+          "linear-gradient(135deg, rgba(248, 250, 252, 0.8) 0%, rgba(241, 245, 249, 0.6) 100%)";
+        card.style.border = "1px solid rgba(203, 213, 225, 0.5)";
+        card.style.backdropFilter = "blur(10px)";
+        card.style.boxShadow =
+          "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)";
+      }
+    });
   },
 
   updateIcons(isLight) {

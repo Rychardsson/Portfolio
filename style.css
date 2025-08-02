@@ -97,13 +97,45 @@ body.light-theme .bg-gray-800 {
   background-color: var(--bg-tertiary) !important;
 }
 
-body.light-theme .bg-white\/5 {
-  background-color: rgba(255, 255, 255, 0.9) !important;
-  border-color: var(--border-color) !important;
+/* CARDS - Configuração específica para modo claro */
+body.light-theme .bg-white\/5,
+body.light-theme .rounded-3xl.bg-white\/5,
+body.light-theme div[class*="bg-white/5"] {
+  background: linear-gradient(
+    135deg,
+    rgba(248, 250, 252, 0.8) 0%,
+    rgba(241, 245, 249, 0.6) 100%
+  ) !important;
+  border: 1px solid rgba(203, 213, 225, 0.5) !important;
+  backdrop-filter: blur(10px) !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
 }
 
-body.light-theme .bg-white\/10 {
-  background-color: rgba(255, 255, 255, 0.95) !important;
+body.light-theme .bg-white\/10,
+body.light-theme .rounded-3xl.bg-white\/10,
+body.light-theme div[class*="bg-white/10"] {
+  background: linear-gradient(
+    135deg,
+    rgba(241, 245, 249, 0.9) 0%,
+    rgba(226, 232, 240, 0.7) 100%
+  ) !important;
+  border: 1px solid rgba(203, 213, 225, 0.6) !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Cards hover no modo claro */
+body.light-theme .bg-white\/5:hover,
+body.light-theme .rounded-3xl.bg-white\/5:hover,
+body.light-theme div[class*="bg-white/5"]:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(241, 245, 249, 0.9) 0%,
+    rgba(226, 232, 240, 0.7) 100%
+  ) !important;
+  border-color: rgba(14, 165, 233, 0.5) !important;
+  transform: translateY(-2px) !important;
 }
 
 /* Textos */
@@ -217,6 +249,44 @@ body.light-theme .backdrop-blur-sm {
 
 body.light-theme .backdrop-blur-lg {
   backdrop-filter: blur(16px);
+}
+
+/* Gradientes internos dos cards no modo claro */
+body.light-theme .bg-gradient-to-br.from-cyan-500\/5 {
+  background: linear-gradient(
+    to bottom right,
+    rgba(8, 145, 178, 0.03),
+    rgba(37, 99, 235, 0.02)
+  ) !important;
+}
+
+/* Elementos translúcidos adicionais no modo claro */
+body.light-theme .bg-white\/20 {
+  background-color: rgba(241, 245, 249, 0.5) !important;
+}
+
+/* Melhor contraste para formulários no modo claro */
+body.light-theme input.bg-white\/5,
+body.light-theme textarea.bg-white\/5 {
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+/* Ajustes finais para consistência visual no modo claro */
+body.light-theme .relative.p-8.rounded-3xl {
+  background: linear-gradient(
+    135deg,
+    rgba(248, 250, 252, 0.6) 0%,
+    rgba(241, 245, 249, 0.4) 100%
+  ) !important;
+}
+
+body.light-theme .relative.p-6.rounded-3xl {
+  background: linear-gradient(
+    135deg,
+    rgba(248, 250, 252, 0.6) 0%,
+    rgba(241, 245, 249, 0.4) 100%
+  ) !important;
 }
 
 /* Header no modo claro */
