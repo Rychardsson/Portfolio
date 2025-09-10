@@ -23,16 +23,22 @@
   --shadow-color: rgba(0, 0, 0, 0.3);
 }
 
-/* Tema claro - versão mais suave e otimizada */
+/* Tema claro - versão mais escura e suave */
 body.light-theme {
-  --bg-primary: #f8fafc;
-  --bg-secondary: #f1f5f9;
-  --bg-tertiary: #e2e8f0;
-  --text-primary: #334155;
-  --text-secondary: #64748b;
+  --bg-primary: #f1f1f1;
+  --bg-secondary: #ebebeb;
+  --bg-tertiary: #e5e5e5;
+  --text-primary: #1a202c;
+  --text-secondary: #2d3748;
   --text-accent: #0891b2;
-  --border-color: #cbd5e1;
-  --shadow-color: rgba(0, 0, 0, 0.08);
+  --border-color: #d1d5db;
+  --shadow-color: rgba(0, 0, 0, 0.12);
+
+  /* Cores de identidade visual */
+  --primary-blue: #1e40af;
+  --accent-green: #059669;
+  --accent-orange: #ea580c;
+  --highlight-purple: #7c3aed;
 }
 
 /* Aplicação das variáveis */
